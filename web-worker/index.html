@@ -1,0 +1,43 @@
+<!--
+ * @Author: Evan
+ * @Date: 2021-06-28 15:39:11
+ * @LastEditors: your name
+ * @LastEditTime: 2021-06-28 15:39:35
+ * @Description: file content
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web worker</title>
+  </head>
+  <body></body>
+  <script>
+    if (window.Worker) {
+      // 1.创建一个worker线程
+      const myWorker = new Worker("worker.js", { name: "myWorker" });
+      // 2.向worker发送数据
+      myWorker.postMessage(10000000000);
+      // 3.监听后台任务
+      myWorker.onmessage = function (e) {
+        let result = {}
+        result.textContent = e.data;
+        console.log("Message received from worker", result);
+        myWorker.terminate();
+      };
+      //4.当离开页面的时候，或者需要结束worker时(比如任务完成时)，
+      //可以结束Worker线程，不必占用资源
+     
+
+      //5.当myWorker异常时的时候，会触发onerror事件
+      myWorker.onerror = function () {
+        console.log("There is an error with your worker!");
+      };
+    } else {
+      //这一步非常重要。具体代码根据需要更具自己的业务写。
+      console.log("Your browser doesn't support web workers.");
+    }
+  </script>
+</html>

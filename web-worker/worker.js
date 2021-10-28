@@ -24,3 +24,5 @@ onmessage = function (e) {
 onerror = function (err) {
   console.log(err);
 };
+
+console.log(123)

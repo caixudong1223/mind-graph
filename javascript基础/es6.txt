@@ -1,0 +1,84 @@
+1、箭头函数与普通函数的区别
+不可以new
+没有this
+继承的this指向永远不变
+call、apply、bind无法改变this指向
+没有arguments
+没有prototype
+不能用作generator函数，不能是呀yeild关键字
+
+
+2、proxy
+vue3实现数据响应
+无需一层一层为每个属性添加代理，完美监听任何方式的数据改变
+浏览器兼容性不好
+
+3、symbol类型
+独一无二的值
+
+
+4、Reflect && Proxy
+Reflect拿到语言内部的方法
+不管proxy如何修改默认行为，在reflect上都能获取到默认的行为
+
+Reflect.apply等同于Function.prototype.apply.call(func, thisArg, args)
+
+
+5、Class
+class可以看多是构造函数的另一种写法
+类本身是指向构造函数的
+子类调用父类的方法时，方法内部的this指向当前子类实例  super.fn() === super.fn.call(this)
+子类的静态方法通过super调用父类的方法时，方法内部的this指向子类，而不是子类的实例
+
+6、async
+async函数返回一个promise对象
+await后面如果不是promise，直接返回值  return await 123 === return 123
+
+
+7、module
+设计思想：  尽量静态化，使得编译时能够确定依赖关系
+commonjs、amd都是运行时确定关系
+
+let { stat, exists, readfile } = require('fs'); // 加载整个fs模块
+import { stat, exists, readFile } from 'fs';  // 只加载这三个方法，其他方法不加载  编译时加载
+
+好处：
+== 不需要umd格式了，将来服务器和浏览器都会支持es6模块
+== 浏览器的api可以通过模块格式提供，不需要做成全局变量
+== 不在需要对象作为命名空间
+
+es6模块自动采用严格模式，顶层的this指向undefined
+
+export输出的接口对应的值是动态绑定的，可以获取到模块内部的实时值  值引用
+commonjs输出的值是值的缓存，不存在动态更新  值拷贝
+
+import命令具有提升作用，会提升到整个模块的头部，首先执行
+由于是静态执行的，所以不能使用表达式和变量
+import { 'f' + 'oo' } from 'my_module'; // 报错
+
+let module = 'my_module';
+import { foo } from module;  // 报错
+
+// 报错
+if (x === 1) {
+  import { foo } from 'module1';
+} else {
+  import { foo } from 'module2';
+}
+
+
+import适合场景
+-- 按需加载
+-- 条件加载
+-- 动态加载
+
+import.meta.url 当前模块的 URL 路径
+import.meta.scriptElement
+
+
+8、模块的加载
+浏览器加载es6模块需要加上 type = 'module',
+浏览器对于带有type = 'module'的模块都是异步加载的，不会造成浏览器的阻塞，等同于开启了defer
+
+
+package.json如果没有type: 'module'，入口文件会被解析成commonjs模块

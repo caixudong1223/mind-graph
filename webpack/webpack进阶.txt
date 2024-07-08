@@ -1,0 +1,6 @@
+1、优化构建速度
+合理的loader配置
+
+thread-loader、happypack(webpack5弃用)
+利用缓存、cache-loader
+dll废弃

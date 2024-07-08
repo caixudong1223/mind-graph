@@ -1,0 +1,38 @@
+一、html5
+
+1、语义化标签
+header、footer、section、nav、article、aside
+
+2、媒体标签
+audio、video  音频视频
+
+3、表单
+类型、属性、事件
+
+4、进度条
+
+5、dom操作
+document.querySelector
+document.querySelectorAll
+
+6、web存储
+localstorage
+sessionstorage
+
+7、其他
+拖放 drag
+画布 canvas
+svg
+地理位置 geolocation
+websocket
+history api   go、forward、back、pushstate
+
+
+二、离线存储
+缓存技术非存储技术
+.appcache
+
+
+
+三、webworker
+后台运行，独立与其他脚本，不影响页面性能

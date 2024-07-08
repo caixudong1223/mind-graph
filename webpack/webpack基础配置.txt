@@ -1,0 +1,69 @@
+1、webpack构建流程
+初始化参数 => 编译 => 确定入口 => 编译模块 => 完成模块编译 => 输出资源 => 输出完成写入系统
+
+2、热更新原理
+websocket  推送更新，hash对比
+
+3、代码分割code splitting
+optimization.splitChunks配置项来开启代码分割
+实现按需加载、提高程序性能
+
+4、tree shaking原理
+确保你使用的是ES6模块语法（即import和export），因为只有这样才能让Tree Shaking发挥作用。
+
+
+5、提升打包速度
+缓存
+多进程、多线程构建  thread-loader happypack
+使用DllPlugin和HardSourceWebpackPlugin
+    dllplugin预先打包第三方库成单独的文件，减少打包时间
+    hardsourcewebpackplugin缓存中间文件，加速后续打包构建过程
+使用tree shaking，减少代码，减小体积
+移除不必要插件
+
+6、如何减少打包后的体积
+代码分割
+代码压缩
+tree shaking
+使用production模式
+静态资源压缩
+cdn加速
+
+7、vite比webpack快在哪里
+webpack先打包再启动，vite直接启动
+现代浏览器对es module的支持
+webpack基于node.js 毫秒级别, vite基于esbuild构建 go语言 纳秒级别
+热更新，内容改变时，webpack需要重新编译，vite只需要重新请求
+
+8、对Monorepo的理解
+单个仓库管理多个项目   有助于代码共享、版本控制、构建和部署，提供更好的可重用行和协作性
+
+
+9、你在项目中如何做
+建议采用渐进式架构方案，即对于轻量级 Monorepo 项目，
+我们初期可以选择 Lerna + pnpm workspace + lerna-changelog，
+解决了依赖管理、发版管理等问题，为开发者带来便利；
+随着后续项目迭代，代码变多或多个项目间依赖关系复杂，可以很平滑的接入 Nx 来提升构建打包效率。
+
+10.为什么pnpm比npm快
+内容寻址  不会存储相同的依赖包
+并行下载能力
+
+11、babel概念原理
+
+12、npm install执行过程
+
+13、css工程化
+
+14、loader与plugin
+loader：转换不同类型的文件使得webpack能够处理
+plugin：贯穿webpack的生命周期完成不同的任务
+
+常见图片处理loader
+file-loader  解决图片引入问题，将图片copy到dist（默认）
+url-loader 依赖file-loader, 图片小于limit，base64格式，大于依然使用file-loader进行拷贝
+imhg-loader 压缩
+
+webpack5 新增资源模块(asset module)，允许使用资源文件（字体，图标等）而无需配置额外的 loader。
+
+babel-loader  处理js代码打包到需要支持的版本

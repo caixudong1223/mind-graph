@@ -138,3 +138,17 @@ html
     重要元素优先渲染、视窗内的元素优先渲染
     服务端渲染 ssr
     优化用户感知 动画、骨架屏等
+
+
+
+7、计算首屏事件，白屏事件
+PerformanceObserver 监听加载性能指标
+
+const time = Date.now() - performance.timing.navagationStart;
+但是不是很准确
+
+另一种思路？
+-- dom的增加、修改、删除会触发MutationObserver
+-- 每次dom变化都会计算出一个相对时间和dom分数变化，并存入一个observerData数组中
+-- 而后处理observerData数组，计算dom变化时分数的差值，取dom分数变化最大的时间点作为首屏事件的取值点
+-- 因为首屏并不是所有dom的渲染，所以不能最后一项dom加载完的时间

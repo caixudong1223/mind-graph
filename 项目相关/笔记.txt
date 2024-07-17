@@ -139,8 +139,6 @@ html
     服务端渲染 ssr
     优化用户感知 动画、骨架屏等
 
-
-
 7、计算首屏事件，白屏事件
 PerformanceObserver 监听加载性能指标
 
@@ -152,3 +150,43 @@ const time = Date.now() - performance.timing.navagationStart;
 -- 每次dom变化都会计算出一个相对时间和dom分数变化，并存入一个observerData数组中
 -- 而后处理observerData数组，计算dom变化时分数的差值，取dom分数变化最大的时间点作为首屏事件的取值点
 -- 因为首屏并不是所有dom的渲染，所以不能最后一项dom加载完的时间
+
+
+8、babel插件
+会写吗？
+原理？
+-- 解析代码，形成ast
+-- 对ast进行转换，生成新的ast
+-- 根据新的ast生成目标代码
+
+9、前端错误监控？
+怎么设计？
+
+采集
+数据清洗入库
+分析
+
+性能监控  performance api /  lighthouse
+-- 首屏时间
+-- 页面加载时间
+-- 资源加载时间
+-- cpu和内存使用
+-- 网络延时
+
+错误监控
+捕获全局错误
+== window.onerror  / window.addEventListener('unhandledrejection')
+== 捕获错误边界组件    react componentDidCatch
+-- js错误
+-- 资源加载失败
+-- http请求错误
+-- 用户交互错误
+
+10、前端代码规范
+
+11、组件库怎么单元测试
+
+
+12、公司内部是怎么封装组件的？怎么发布？业务组件？
+公司内部组件平台方案
+使用npm和verdaccio来实现

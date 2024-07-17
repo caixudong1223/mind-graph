@@ -41,3 +41,28 @@ const a = {
 console.log(a[s]);
 console.log(a.s);
 a[s]("text");
+
+async function simpleFetch(url, options = {}) {
+  const defaultOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const fetchOptions = { ...defaultOptions, ...options };
+
+  try {
+    const response = await fetch(url, fetchOptions);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}

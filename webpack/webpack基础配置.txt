@@ -62,7 +62,7 @@ plugin：贯穿webpack的生命周期完成不同的任务
 常见图片处理loader
 file-loader  解决图片引入问题，将图片copy到dist（默认）
 url-loader 依赖file-loader, 图片小于limit，base64格式，大于依然使用file-loader进行拷贝
-imhg-loader 压缩
+img-loader 压缩
 
 webpack5 新增资源模块(asset module)，允许使用资源文件（字体，图标等）而无需配置额外的 loader。
 

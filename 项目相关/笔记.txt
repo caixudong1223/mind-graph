@@ -190,3 +190,20 @@ const time = Date.now() - performance.timing.navagationStart;
 12、公司内部是怎么封装组件的？怎么发布？业务组件？
 公司内部组件平台方案
 使用npm和verdaccio来实现
+
+
+
+13、如果一个npm包的部分功能不需求，如何修改其部分功能？
+https://mp.weixin.qq.com/s/FSd_g0fZhH0IxOl9gBWypw
+
+方法1：
+fork源代码，修改提交pr给官方发布到npm，或者发布到私有npm，直接切换项目使用版本为自己的版本
+
+方法2：
+本地修改与补丁
+
+直接在node_modules中修改包，创建补丁文件，使用git diff比较差异形成补丁文件，应用补丁，使用patch-package这样的工具在你的包上应用布丁
+
+
+方法3：
+包装第三方包

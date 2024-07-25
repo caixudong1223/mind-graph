@@ -1,0 +1,77 @@
+Q1、什么是工程化？你做过哪些和工程化相关的事情？
+概念：以一种偏自动化、脚本化，结合一些工具的能力，解决一些人工处理的低效、非标准的问题，提升质量、效率、性能
+
+工程化包括什么？
+git、npm scripts、chrome dev、package manager、sdk、node、ast、babel、postcss、eslint、jest、terser、ssr、esm、mock、headless、cicd、monorepo、
+micro-app、性能、体验、质量
+
+-- 应用
+-- 实验
+
+Q2、什么是ast?
+在前端中，ast是前端基建和工程化的基石。一般我们用一些工具进行转译
+
+-- 涉及的工具
+    webpack
+    babel  babel-plugin
+    postcss  css届的babel
+    vue
+    react jsx解析主要是babel
+
+-- 抽象语法树  abstract syntax tree
+    基于es6、ts等，转化成一个描述语言结构的树形语法结构
+
+Q3、说一说babel在前端中的作用
+-- 代码的转译
+    esnext -> @babel/preset-env
+        async/await 装饰器
+    typescript -> @babel/preset-typescript | tsc | ts-loader
+    flow
+-- 特点用途的代码转换
+    taro转译成小程序  babel的api来实现
+    react jsx -> react.createElement | _jsx -> @babel/preset-react
+-- 代码静态分析工具
+    linter的工具
+    jest的工具
+
+babel
+工具链，主要用于将esnext和其他的一些高级语法的代码，转化成向后兼容的js语法，一遍能够运行在当前和旧版本的浏览器环境中
+
+Q4、babel的主要工作流程
+-- 编译原理
+    - parser -> transform -> generate
+-- 第一步 parser 把源码解析成ast
+    - @babel/parser
+-- 第二步 transform  遍历ast进行必要改造
+    - @babel/traverse
+    - 遍历ast，最后调用visitor修改ast
+    - @babel/types
+    - 创建修改删除，需要用到types
+    - @babel/template
+    - 如果需要批量的处理，是需要的
+-- 第三步 generate 把改造后的代码生成目标代码以及sourcemap
+    - @babel/generator
+
+babel的典型配置是什么？如何配置？
+- babel6 .babelrc
+- babel7 babel.config.js
+
+'''json
+{
+    "presets": [
+        "@babel/preset-react",
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "entry",
+                "corejs": 3,
+                "targets": {
+                    "ie": 11
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        ...
+    ]
+}
